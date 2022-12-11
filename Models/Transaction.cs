@@ -1,16 +1,21 @@
-﻿namespace TransactionStore.Models
+﻿namespace TransactionStore.Models;
+
+public class Transaction
 {
-    public class Transaction
+    public int Id { get; set; }
+    public int UserId { get; set; }
+    public int AccountId { get; set; }
+    public int ReceiverId { get; set; }
+    public decimal TransactionAmount { get; set; }
+
+    //public TranType TransactionType { get; set; }
+
+    public DateTime TransactionDate { get; set; }
+
+    public enum TranType
     {
-        public int UserId { get; set; }
-        public int AccountId { get; set; }
-        public int ReceiverId { get; set; }
-        public int TransactiontId { get; set; }
-        public enum TransactionType
-        {
-            Deposit,
-            Withdraw,
-            Transfer
-        }
+        Deposit,
+        Withdraw,
+        Transfer
     }
 }
