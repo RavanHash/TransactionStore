@@ -1,6 +1,6 @@
 ﻿namespace TransactionStore.Models;
 
-public class Transaction
+public class TransactionModel
 {
     public int Id { get; set; }
     public int UserId { get; set; }
@@ -14,7 +14,7 @@ public class Transaction
 
     public enum TranType
     {
-        Deposit,
+        Deposit = 1,
         Withdraw,
         Transfer
     }
