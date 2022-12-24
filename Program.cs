@@ -1,3 +1,5 @@
+using LoggerService;
+using NLog;
 using TransactionStore.DAL.StoredProcedure;
 using TransactionStore.Services;
 using TransactionStore.Services.Interfaces;
@@ -9,10 +11,13 @@ internal static class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
+
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+        builder.Services.AddScoped<ILoggerManager, LoggerManager>();
         builder.Services.AddScoped<ITransactionService, TransactionService>();
         builder.Services.AddScoped<ITransactionStoredProcedure, TransactionStoredProcedure>();
 
