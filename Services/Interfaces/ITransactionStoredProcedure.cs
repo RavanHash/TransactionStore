@@ -10,4 +10,6 @@ public interface ITransactionStoredProcedure
     public Task<TransactionModel> SelectTransactionById(int transactionId);
 
     public Task<IEnumerable<TransactionModel>> SelectAllTransactionsByUserId(int userId);
+
+    public Task<decimal?> GetBalanceByUserId(int userId);
 }

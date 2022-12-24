@@ -6,7 +6,7 @@ public class TransactionModel
 {
     public int Id { get; set; }
     public int UserId { get; set; }
-    public int ReceiverId { get; set; }
+    public int? ReceiverId { get; set; }
     public decimal TransactionAmount { get; set; }
 
     [EnumDataType(typeof(TranType))]
@@ -27,6 +27,6 @@ public class TransactionModel
     {
         USD = 1,
         AZN,
-        EUR,
+        EUR
     }
 }

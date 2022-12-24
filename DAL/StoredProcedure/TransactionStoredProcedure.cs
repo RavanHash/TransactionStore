@@ -42,4 +42,12 @@ public class TransactionStoredProcedure : ITransactionStoredProcedure
         return await connection.QueryAsync<TransactionModel>
             ("select * from Transactions where UserId = @Id", new { Id = userId });
     }
+
+    public async Task<decimal?> GetBalanceByUserId(int userId)
+    {
+        using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+
+        return await connection.ExecuteScalarAsync<decimal?>
+            ("select coalesce(sum([TransactionAmount]),0) from Transactions where UserId = @Id", new { Id = userId });
+    }
 }

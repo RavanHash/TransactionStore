@@ -23,6 +23,23 @@ public class TransactionController : ControllerBase
         return Ok(await _transactionServices.AddDeposit(transaction, transactionId));
     }
 
+    [HttpPost("withdraw")]
+    [ProducesResponseType(typeof(long), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<ActionResult<TransactionModel>> Withdraw([FromBody] TransactionModel transaction, int transactionId)
+    {
+        return Ok(await _transactionServices.Withdraw(transaction, transactionId));
+    }
+
+    [HttpPost("transfer")]
+    [ProducesResponseType(typeof(long), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<ActionResult<List<TransactionModel>>> AddTransfer([FromBody] List<TransactionModel> transferModels)
+    {
+        return await _transactionServices.AddTransfer(transferModels);
+    }
+
+
     [HttpGet("all")]
     [ProducesResponseType(typeof(long), StatusCodes.Status201Created)]
     public async Task<ActionResult<TransactionModel>> GetTransactions()
