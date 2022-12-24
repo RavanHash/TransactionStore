@@ -17,10 +17,9 @@ public class TransactionStoredProcedure : ITransactionStoredProcedure
     {
         using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
 
-        await connection.ExecuteAsync("insert into Transactions (Id, UserId, AccountId, ReceiverId, TransactionAmount, TransactionDate)" +
-           " values (@Id, @UserId, @AccountId, @ReceiverId, @TransactionAmount, @TransactionDate)", transaction);
+        await connection.ExecuteAsync("insert into Transactions (Id, UserId, ReceiverId, TransactionAmount, TransactionType, Currency, TransactionDate)" +
+           " values (@Id, @UserId, @ReceiverId, @TransactionAmount, @TransactionType, @Currency, @TransactionDate)", transaction);
     }
-
 
     public async Task<IEnumerable<TransactionModel>> SelectAllTransactions()
     {
@@ -42,13 +41,5 @@ public class TransactionStoredProcedure : ITransactionStoredProcedure
 
         return await connection.QueryAsync<TransactionModel>
             ("select * from Transactions where UserId = @Id", new { Id = userId });
-    }
-
-    public async Task<IEnumerable<TransactionModel>> SelectAllTransactionsByAccountId(int userId, int accountId)
-    {
-        using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
-
-        return await connection.QueryAsync<TransactionModel>
-            ("select * from Transactions where UserId = @Id and AccountId = @accountId", new { Id = userId, AccountId = accountId });
     }
 }

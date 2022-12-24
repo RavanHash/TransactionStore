@@ -15,7 +15,6 @@ public class TransactionController : ControllerBase
         _transactionServices = transactionServices;
     }
 
-
     [HttpPost("deposit")]
     [ProducesResponseType(typeof(long), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
@@ -26,7 +25,6 @@ public class TransactionController : ControllerBase
 
     [HttpGet("all")]
     [ProducesResponseType(typeof(long), StatusCodes.Status201Created)]
-    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<ActionResult<TransactionModel>> GetTransactions()
     {
         return Ok(await _transactionServices.GetAllTransactions());

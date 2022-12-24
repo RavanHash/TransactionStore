@@ -18,8 +18,16 @@ public class TransactionService : ITransactionService
         return await _transactionStoredProcedure.SelectTransactionById(transactionId);
     }
 
-    //public async Task<long> AddDeposit(TransactionModel transaction)
+    //public async Task<long> Withdraw(TransactionModel transaction)
     //{
+
+    //    return ;
+    //}
+
+    //public async Task<List<long>> AddTransfer(List<TransactionModel> transfersModels)
+    //{
+
+
 
     //    return ;
     //}
@@ -27,12 +35,6 @@ public class TransactionService : ITransactionService
     //public async Task<decimal?> GetBalanceByAccountId(int accountId)
     //{
 
-
-    //    return ;
-    //}
-
-    //public async Task<long> Withdraw(TransactionModel transaction)
-    //{
 
     //    return ;
     //}
@@ -51,10 +53,5 @@ public class TransactionService : ITransactionService
     public async Task<IEnumerable<TransactionModel>> GetTransactionsByUserId(int userId)
     {
         return await _transactionStoredProcedure.SelectAllTransactionsByUserId(userId);
-    }
-
-    public async Task<IEnumerable<TransactionModel>> GetTransactionsByAccountId(int userId, int accountId)
-    {
-        return await _transactionStoredProcedure.SelectAllTransactionsByAccountId(userId, accountId);
     }
 }

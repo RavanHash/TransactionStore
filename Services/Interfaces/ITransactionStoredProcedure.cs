@@ -10,6 +10,4 @@ public interface ITransactionStoredProcedure
     public Task<TransactionModel> SelectTransactionById(int transactionId);
 
     public Task<IEnumerable<TransactionModel>> SelectAllTransactionsByUserId(int userId);
-
-    public Task<IEnumerable<TransactionModel>> SelectAllTransactionsByAccountId(int userId, int accountId);
 }

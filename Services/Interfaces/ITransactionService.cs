@@ -10,7 +10,4 @@ public interface ITransactionService
     public Task<TransactionModel> GetTransactionById(int id);
 
     public Task<IEnumerable<TransactionModel>> GetTransactionsByUserId(int userId);
-
-    public Task<IEnumerable<TransactionModel>> GetTransactionsByAccountId(int userId, int accountId);
-
 }
