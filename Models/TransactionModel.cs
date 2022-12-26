@@ -25,8 +25,9 @@ public class TransactionModel
 
     public enum CurrencyType
     {
-        USD = 1,
-        AZN,
-        EUR
+        AZN = 1,
+        USD,
+        EUR,
+        RUB
     }
 }

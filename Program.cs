@@ -20,6 +20,8 @@ internal static class Program
         builder.Services.AddScoped<ILoggerManager, LoggerManager>();
         builder.Services.AddScoped<ITransactionService, TransactionService>();
         builder.Services.AddScoped<ITransactionStoredProcedure, TransactionStoredProcedure>();
+        builder.Services.AddScoped<IRateService, RateService>();
+        builder.Services.AddScoped<ICalculationService, CalculationService>();
 
         var app = builder.Build();
 

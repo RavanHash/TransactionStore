@@ -7,11 +7,13 @@ public class TransactionService : ITransactionService
 {
     private readonly ILoggerManager _logger;
     private readonly ITransactionStoredProcedure _transactionStoredProcedure;
+    private readonly ICalculationService _calculationService;
 
-    public TransactionService(ILoggerManager logger, ITransactionStoredProcedure transactionStoredProcedure)
+    public TransactionService(ILoggerManager logger, ITransactionStoredProcedure transactionStoredProcedure, ICalculationService calculationService)
     {
         _logger = logger;
         _transactionStoredProcedure = transactionStoredProcedure;
+        _calculationService = calculationService;
     }
 
     public async Task<TransactionModel> AddDeposit(TransactionModel transaction, int transactionId)
@@ -34,14 +36,16 @@ public class TransactionService : ITransactionService
 
     public async Task<List<TransactionModel>> AddTransfer(List<TransactionModel> transfersModels)
     {
-        _logger.LogInformation("Business layer: Query to data base for add transaction");
-        _transactionStoredProcedure.InsertTransaction(transfersModels[0]);
+        var transfersConvert = await _calculationService.ConvertCurrency(transfersModels);
 
         _logger.LogInformation("Business layer: Query to data base for add transaction");
-        _transactionStoredProcedure.InsertTransaction(transfersModels[1]);
+        _transactionStoredProcedure.InsertTransaction(transfersConvert[0]);
 
-        var transaction1 = await _transactionStoredProcedure.SelectTransactionById(transfersModels[0].Id);
-        var transaction2 = await _transactionStoredProcedure.SelectTransactionById(transfersModels[1].Id);
+        _logger.LogInformation("Business layer: Query to data base for add transaction");
+        _transactionStoredProcedure.InsertTransaction(transfersConvert[1]);
+
+        var transaction1 = await _transactionStoredProcedure.SelectTransactionById(transfersConvert[0].Id);
+        var transaction2 = await _transactionStoredProcedure.SelectTransactionById(transfersConvert[1].Id);
 
         _logger.LogInformation("Business layer: Query to data base to return transactions");
         return new List<TransactionModel>
