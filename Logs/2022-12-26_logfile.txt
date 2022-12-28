@@ -1,0 +1,38 @@
+2022-12-26 17:54:38.8183 INFO Controller: Call method GetTransactionsByUserId 1
+2022-12-26 17:54:38.8401 INFO Business layer: Query in database for transaction by accountId 1
+2022-12-26 17:54:38.8401 INFO Business layer: Transactions returned to controller
+2022-12-26 17:54:38.9876 INFO Data layer: Connection to data base
+2022-12-26 17:54:39.0117 INFO Data layer: Transactions by user id 1 returned to business
+2022-12-26 18:02:40.5814 INFO Controller: Call method AddTransfer. Sender: userId 1, Recipient: account id 2
+2022-12-26 18:02:40.6055 INFO Business layer: Call GetCurrencyRate method
+2022-12-26 18:02:40.6055 INFO Business layer: Call method GetRate
+2022-12-26 18:02:40.6055 INFO Business layer: Currency rates returned
+2022-12-26 18:02:40.6055 INFO Business layer: Calculate currency rate
+2022-12-26 18:02:40.6055 INFO Business layer: Converting AZN to USD amount 10
+2022-12-26 18:02:40.6055 INFO Business layer: Transfers converted returned
+2022-12-26 18:02:40.6055 INFO Business layer: Query to data base for add transaction
+2022-12-26 18:02:40.6384 INFO Data layer: Connection to data base
+2022-12-26 18:02:40.7473 INFO Business layer: Query to data base for add transaction
+2022-12-26 18:02:40.7473 INFO Data layer: Connection to data base
+2022-12-26 18:02:40.7473 INFO Data layer: Connection to data base
+2022-12-26 18:02:40.7473 INFO Data layer: Transaction id 5 returned to business
+2022-12-26 18:02:40.9268 INFO Data layer: Transaction Transfer id 5 created
+2022-12-26 18:02:40.9268 INFO Data layer: Transaction Transfer id 6 created
+2022-12-26 18:02:49.9005 INFO Controller: Call method GetTransactions, all 
+2022-12-26 18:02:49.9005 INFO Business layer: Query in data base for transactions receiving
+2022-12-26 18:02:49.9005 INFO Business layer: All Transactions returned to controller
+2022-12-26 18:02:49.9019 INFO Data layer: Connection to data base
+2022-12-26 18:02:49.9019 INFO Data layer: All transactions returned to business
+2022-12-26 18:03:09.7265 INFO Controller: Call method GetBalanceByAccountId 1
+2022-12-26 18:03:09.7265 INFO Business layer: Balance by account id 1 returned to controller
+2022-12-26 18:03:09.7265 INFO Data layer: Connection to data base
+2022-12-26 18:03:09.7424 INFO Data layer: Balance 690,0000 returned to business
+2022-12-26 18:03:14.7662 INFO Controller: Call method GetBalanceByAccountId 2
+2022-12-26 18:03:14.7662 INFO Business layer: Balance by account id 2 returned to controller
+2022-12-26 18:03:14.7662 INFO Data layer: Connection to data base
+2022-12-26 18:03:14.7662 INFO Data layer: Balance 505,9000 returned to business
+2022-12-26 18:03:26.9937 INFO Controller: Call method GetTransactionsByUserId 2
+2022-12-26 18:03:26.9937 INFO Business layer: Query in database for transaction by accountId 2
+2022-12-26 18:03:26.9937 INFO Business layer: Transactions returned to controller
+2022-12-26 18:03:26.9937 INFO Data layer: Connection to data base
+2022-12-26 18:03:26.9937 INFO Data layer: Transactions by user id 2 returned to business

@@ -54,11 +54,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\RA\\Desktop\\TransactionStore\\TransactionStore\\LoggerService\\LoggerService.csproj",
+      "projectUniqueName": "C:\\Users\\RA\\Desktop\\TransactionStore\\LoggerService\\LoggerService.csproj",
       "projectName": "LoggerService",
-      "projectPath": "C:\\Users\\RA\\Desktop\\TransactionStore\\TransactionStore\\LoggerService\\LoggerService.csproj",
+      "projectPath": "C:\\Users\\RA\\Desktop\\TransactionStore\\LoggerService\\LoggerService.csproj",
       "packagesPath": "C:\\Users\\RA\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\RA\\Desktop\\TransactionStore\\TransactionStore\\LoggerService\\obj\\",
+      "outputPath": "C:\\Users\\RA\\Desktop\\TransactionStore\\LoggerService\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\RA\\AppData\\Roaming\\NuGet\\NuGet.Config",

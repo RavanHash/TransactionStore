@@ -1,5 +1,7 @@
 ﻿using LoggerService;
 using Microsoft.AspNetCore.Mvc;
+using TransactionStore.API.Models;
+using TransactionStore.API.Services;
 using TransactionStore.Models;
 using TransactionStore.Services.Interfaces;
 
@@ -9,24 +11,27 @@ namespace TransactionStore.Controllers;
 [ApiController]
 public class TransactionController : ControllerBase
 {
+    static HttpClient httpClient = new HttpClient();
     private readonly ILoggerManager _logger;
     private readonly ITransactionService _transactionServices;
+    //private readonly IMapper _mapper;
 
-    public TransactionController(ILoggerManager logger, ITransactionService transactionServices)
+    public TransactionController(ILoggerManager logger, ITransactionService transactionServices) //, Mapper mapper)
     {
         _logger = logger;
+        //_mapper = mapper;
         _transactionServices = transactionServices;
     }
 
     [HttpPost("deposit")]
     [ProducesResponseType(typeof(long), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
-    public async Task<ActionResult<TransactionModel>> AddDeposit([FromBody] TransactionModel transaction, int transactionId)
+    public async Task<TransactionModel> AddDeposit([FromBody] TransactionRequest transactionRequest)
     {
-        _logger.LogInformation($"Controller: Call method AddDeposit, userId {transaction.UserId}, " +
-            $"amount {transaction.TransactionAmount}, {transaction.Currency}");
+        Console.WriteLine(1);
+        var transaction = await _transactionServices.AddDeposit(CustomMapper.MapTransactionRequestModel(transactionRequest));
 
-        return Ok(await _transactionServices.AddDeposit(transaction, transactionId));
+        return transaction;
     }
 
     [HttpPost("withdraw")]

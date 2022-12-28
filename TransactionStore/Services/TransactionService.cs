@@ -16,10 +16,11 @@ public class TransactionService : ITransactionService
         _calculationService = calculationService;
     }
 
-    public async Task<TransactionModel> AddDeposit(TransactionModel transaction, int transactionId)
+    public async Task<TransactionModel> AddDeposit(TransactionModel transaction)
     {
         _logger.LogInformation("Business layer: Query to data base for add transaction");
-        _transactionStoredProcedure.InsertTransaction(transaction);
+        transaction.TransactionType = TransactionModel.TranType.Deposit;
+        var transactionId = await _transactionStoredProcedure.InsertTransaction(transaction);
 
         _logger.LogInformation("Business layer: Query to data base to return transaction");
         return await _transactionStoredProcedure.SelectTransactionById(transactionId);

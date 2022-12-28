@@ -3,7 +3,7 @@
 namespace TransactionStore.Services.Interfaces;
 public interface ITransactionService
 {
-    public Task<TransactionModel> AddDeposit(TransactionModel transaction, int transactionId);
+    public Task<TransactionModel> AddDeposit(TransactionModel transaction);
 
     public Task<TransactionModel> Withdraw(TransactionModel transaction, int transactionId);
 

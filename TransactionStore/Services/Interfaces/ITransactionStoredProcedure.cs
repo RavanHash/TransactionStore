@@ -3,7 +3,7 @@
 namespace TransactionStore.Services.Interfaces;
 public interface ITransactionStoredProcedure
 {
-    public void InsertTransaction(TransactionModel transaction);
+    public Task<int> InsertTransaction(TransactionModel transaction);
 
     public Task<IEnumerable<TransactionModel>> SelectAllTransactions();
 

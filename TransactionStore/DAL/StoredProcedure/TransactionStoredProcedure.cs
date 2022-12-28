@@ -16,15 +16,15 @@ public class TransactionStoredProcedure : ITransactionStoredProcedure
         _config = config;
     }
 
-    public async void InsertTransaction(TransactionModel transaction)
+    public async Task<int> InsertTransaction(TransactionModel transaction)
     {
-        _logger.LogInformation("Data layer: Connection to data base");
         using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+        await connection.ExecuteAsync("insert into Transactions (UserId, ReceiverId, TransactionAmount, TransactionType, Currency, TransactionDate)" +
+           " values (@UserId, @ReceiverId, @TransactionAmount, @TransactionType, @Currency, @TransactionDate)", transaction);
 
-        await connection.ExecuteAsync("insert into Transactions (Id, UserId, ReceiverId, TransactionAmount, TransactionType, Currency, TransactionDate)" +
-           " values (@Id, @UserId, @ReceiverId, @TransactionAmount, @TransactionType, @Currency, @TransactionDate)", transaction);
+        var id = await connection.QueryAsync<int>("select max(id) from Transactions");
 
-        _logger.LogInformation($"Data layer: Transaction {transaction.TransactionType} id {transaction.Id} created");
+        return id.FirstOrDefault();
     }
 
     public async Task<IEnumerable<TransactionModel>> SelectAllTransactions()

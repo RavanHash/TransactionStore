@@ -11,11 +11,24 @@ internal static class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+
         LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy(name: MyAllowSpecificOrigins, policy =>
+            {
+                policy.WithOrigins("http://localhost:5175").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+            });
+        });
+
+        //builder.Services.AddAutoMapper(typeof(MapperConfigAPI), typeof(MapperConfigBusiness));
 
         builder.Services.AddScoped<ILoggerManager, LoggerManager>();
         builder.Services.AddScoped<ITransactionService, TransactionService>();
@@ -33,6 +46,7 @@ internal static class Program
 
         app.UseHttpsRedirection();
         app.UseAuthorization();
+        app.UseCors(MyAllowSpecificOrigins);
         app.MapControllers();
         app.Run();
     }
